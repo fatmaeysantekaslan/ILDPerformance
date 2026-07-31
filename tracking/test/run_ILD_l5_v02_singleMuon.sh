@@ -59,11 +59,11 @@ for i in "${!PolarAngles[@]}"; do
 
 	for j in "${!Mom[@]}"; do
 
-		GENFILE="Results/GenFiles/mcparticles_MuonsAngle_${PolarAngles[i]}_Mom_${Mom[j]}.slcio"
-		if [[ -s "${GENFILE}" && "${RERUN_GEN}" != "true" ]]; then
-			echo "${GENFILE} exists, skipping generation."
-			continue
-		fi
+                GENFILE="Results/GenFiles/mcparticles_MuonsAngle_${PolarAngles[i]}_Mom_${Mom[j]}.slcio"
+                if [[ -s "${GENFILE}" ]]; then
+                        echo "${GENFILE} exists, skipping generation."
+                        continue
+                fi
 
 		python lcio_particle_gun.py ${Mom[j]} ${PolarAngles[i]} ${GENFILE} 13 -1. &
 
